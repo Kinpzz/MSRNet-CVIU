@@ -1,0 +1,32 @@
+NETWORK: msrn_resnet50
+SETTING:
+  root: './runs'              # path to save models
+  data_root: '../data/'      # dataset path
+  visual_dir: 'visual'
+  log_dir: 'log'
+  model_dir: 'model'
+  image_dir: 'imgs'
+  label_dir: 'gt'
+  image_set_dir: 'ImageSets'
+  image_suffix: '.jpg'
+  label_suffix: '.png'
+  GPU: '0'
+TRAIN:
+  dataset: 'ILSO'
+  subset: 'train_id_2000' # id of training sets
+  input_size: 320
+  batch_size: 8
+  num_epochs: 400
+  lr: 0.00001
+  pretrained: './models/MSRNet_Model_DUTS.params'
+VAL:
+  dataset: 'ILSO'
+  subset: 'test_id_2000'
+  val_epoch: 1             # validation intervals
+INFERENCE:
+  dataset: 'ILSO'
+  subset: 'test_id_2000'
+  batch_size: 32
+  input_size: 320
+  region_model: './models/MSRNet_ILSO_finetuned_region_model.params'
+  contour_model: './models/MSRNet_ILSO_finetuned_contour_model.params'

@@ -1,0 +1,31 @@
+NETWORK: msrn_resnet50
+SETTING:
+  root: './runs'         # path to save models
+  data_root: '../data/' # dataset path
+  visual_dir: 'visual'
+  log_dir: 'log'
+  model_dir: 'model'
+  image_dir: 'imgs'
+  label_dir: 'gt'
+  image_set_dir: 'ImageSets'
+  image_suffix: '.jpg'
+  label_suffix: '.png'
+  GPU: '0'
+TRAIN:
+  dataset: 'DUTS'
+  subset: 'train_id' # id of training sets
+  input_size: 320
+  batch_size: 8
+  num_epochs: 50
+  lr: 0.00001
+  #pretrained: './models/' # resumed models
+VAL:
+  dataset: 'DUTS'
+  subset: 'test_id'
+  val_epoch: 1       # validation intervals
+INFERENCE:
+  dataset: 'DUTS'    # ECSSD, HKU-IS, PASCAL-S, DUT-O, SOD
+  subset: 'test_id'
+  batch_size: 32
+  input_size: 320
+  region_model: './models/MSRNet_Model_DUTS.params'
